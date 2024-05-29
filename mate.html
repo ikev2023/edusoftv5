@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Matematicas</title>
+</head>
+
+<body onload="verificarmate()">
+    <div class="container-lg-custom-bg-color">
+        <nav class="navbar navbar-expand-lg fixed-back">
+            <div class="container d-flex align-items-center justify-content-center">
+                <img src="logo.png" class="logo" alt="" />
+                <div class="container_xd"></div>
+                <h1 class="slogan">Educación Gratuita</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Cursos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="sociales.html">Ciencias Sociales</a></li>
+                                <li><a class="dropdown-item" href="ingles.html">Ingles</a></li>
+                                <li><a class="dropdown-item" href="mate.html">Matemáticas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nosotros.html">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="equipo.html">Nuestro Equipo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="d-flex align-items-center justify-content-center color-black">
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="dog-piano.png" class="img_dog p-2" id="dogi" style="display: none;">
+            <div class="form-check form-switch" style="display: none;" id="checkdog">
+                <input class="form-check-input" type="checkbox" role="switch" id="audioControl" onchange="toggleAudio()"
+                    checked="true" />
+                <label class="form-check-label" for="audioControl">Música on/off</label>
+            </div>
+        </div>
+    </div>
+    <div class="text-center" id="gameover" style="display: none;">
+        <canvas id="fallingLeavesCanvas"></canvas>
+        <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModaladver2">Eliminar Progreso</button>
+        <h1>Felicidades Completaste la unidad</h1>
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+            type="module"></script>
+        <div class="d-flex align-items-center justify-content-center p-3">
+            <dotlottie-player src="https://lottie.host/c53a22e7-dd7d-4bb4-870d-ecb2e0d1701d/KttL5vzAEU.json"
+                background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                autoplay></dotlottie-player>
+        </div>
+        <h2>Puntaje:</h2>
+        <h1 id="finalpuntaje">...</h1>
+    </div>
+    <div class="modal fade" id="exampleModaladver2" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">PRECAUCIÓN</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="container-lg">
+                        <h2>¿Estas seguro?</h2>
+                        <h2>(todo el progreso de esta unidad se perderá)</h2>
+                        <button class="btn" onclick="borrar()">Estoy seguro</button>
+                        <button class="btn" data-bs-dismiss="modal" aria-label="Close">Nop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- botones -->
+    <div id="player5"></div>
+    <div class="container" id="botones">
+        <div class="text-center">
+            <h2>Matemáticas</h2>
+            <h1>Actividades</h1>
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModaladver">Eliminar Progreso</button>
+        </div>
+        <div class="container d-flex align-items-center justify-content-center p-3">
+            <button type="button" class="btn3" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn1">
+                <img src="btn_intro_mate.png" class="btn_arbol" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    type="button">
+            </button>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <button disabled type="button" class="btn3" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                        id="btn2">
+                        <img src="btn_ejemplo_mate.png" class="btn_arbol" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal2" type="button">
+                    </button>
+                </div>
+                <div class="col">
+                    <button disabled type="button" class="btn3" data-bs-toggle="modal" data-bs-target="#exampleModal3"
+                        id="btn3">
+                        <img src="btn_datos_mate.png" class="btn_arbol" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal3" type="button">
+                    </button>
+                </div>
+
+
+                <div class="container d-flex align-items-center justify-content-center p-3">
+                    <button disabled type="button" class="btn3" data-bs-toggle="modal" data-bs-target="#exampleModal5"
+                        id="btn5">
+                        <img src="btn_exam.svg" class="btn_arbol" data-bs-toggle="modal" data-bs-target="#exampleModal5"
+                            type="button" onclick="playmusicquiz()">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal advertencia-->
+        <div class="modal fade" id="exampleModaladver" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">PRECAUCIÓN</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="container-lg">
+                            <h2>¿Estas seguro?</h2>
+                            <h2>(todo el progreso de esta unidad se perderá)</h2>
+                            <button class="btn" onclick="borrar()">Estoy seguro</button>
+                            <button class="btn" data-bs-dismiss="modal" aria-label="Close">Nop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal 1 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Introducción</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="pausarVideo()"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="img" id="player"></div>
+                        <div class="text-center-lg">
+                            <h1 class="text-center-lg" id="msj1" style="display: none;">Actividad completada</h1>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continuar1" type="button" class="btn" data-bs-dismiss="modal" style="display: none;"
+                            onclick="seguir1()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Datos que debes saber</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="pausarVideo2()"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div id="player2"></div>
+                        <div class="text-center-lg">
+                            <h1 class="text-center-lg" id="msj2" style="display: none;">Actividad completada</h1>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continuar2" type="button" class="btn" data-bs-dismiss="modal" style="display: none;"
+                            onclick="seguir2()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Desarrollo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="pausarVideo3()"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div style="width: 100%;">
+                            <div style="position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0;"><iframe
+                                    title="Edusoft Triangulo rectangulo" frameborder="0" width="1200" height="675"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                    src="https://view.genially.com/6656839c7e93440015135fe7" type="text/html"
+                                    allowscriptaccess="always" allowfullscreen="true" scrolling="yes"
+                                    allownetworking="all"></iframe> </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continuar3" type="button" class="btn" data-bs-dismiss="modal"
+                            onclick="seguir3()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal 5 prueba -->
+        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Examen</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="pausarVideo()"></button>
+                    </div>
+                    <div class="modal-body container">
+                        <div id="player6"></div>
+                        <div id="bueno"></div>
+                        <div class="d-flex align-items-center justify-content-center color-black">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img src="dog-piano.png" class="img_dog p-2" id="dogi2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="audioControl2"
+                                        onchange="toggleAudio2()" checked="true" />
+                                    <label class="form-check-label" for="audioControl">Música on/off</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pregunta1">
+                            <div>
+                                <h3 class="text-center">Pregunta #1</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Cuáles fueron las principales causas geopolíticas mencionadas
+                                    en el
+                                    video de los antecedentes de la Primera Guerra Mundial?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Tensiones religiosas en Europa <input type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Competencia por recursos y territorios coloniales. <input type="radio"
+                                                    name="rdb" id="correcta1"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Cambios demográficos en las potencias europeas.<input type="radio"
+                                                    name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder1()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pregunta2" style="display: none;">
+                            <div>
+                                <h3 class="text-center">Pregunta #2</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Qué tipos de alianzas militares se formaron antes del estallido
+                                    de
+                                    la guerra?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Unión de países africanos contra las potencias europeas.<input
+                                                    type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Triple Entente y Triple Alianza en Europa.<input type="radio"
+                                                    name="rdb" id="correcta2"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Pactos de no agresión entre Rusia y Alemania.<input type="radio"
+                                                    name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder2()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pregunta3" style="display: none;">
+                            <div>
+                                <h3 class="text-center">Pregunta #3</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Qué tácticas y tecnologías militares se destacaron en el
+                                    desarrollo
+                                    de la guerra?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Uso extensivo de carros de combate y bombas nucleares.<input
+                                                    type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Estrategias de guerra de guerrillas y códigos de comunicación
+                                                secretos.<input type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Trincheras, aviones de combate y armas químicas como el gas
+                                                mostaza.<input type="radio" name="rdb" id="correcta3"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder3()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pregunta3" style="display: none;">
+                            <div>
+                                <h3 class="text-center">Pregunta #3</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Qué tácticas y tecnologías militares se destacaron en el
+                                    desarrollo
+                                    de la guerra?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Uso extensivo de carros de combate y bombas nucleares.<input
+                                                    type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Estrategias de guerra de guerrillas y códigos de comunicación
+                                                secretos.<input type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Trincheras, aviones de combate y armas químicas como el gas
+                                                mostaza.<input type="radio" name="rdb" id="correcta3"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder3()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pregunta4" style="display: none;">
+                            <div>
+                                <h3 class="text-center">Pregunta #4</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Cuál fue el impacto económico y social más significativo de la
+                                    guerra?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Unión de países africanos contra las potencias europeas.<input
+                                                    type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Triple Entente y Triple Alianza en Europa.<input type="radio"
+                                                    name="rdb" id="correcta4"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Pactos de no agresión entre Rusia y Alemania.<input type="radio"
+                                                    name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder4()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pregunta5" style="display: none;">
+                            <div>
+                                <h3 class="text-center">Pregunta #5</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-center">¿Cómo cambió el mapa geopolítico de Europa como resultado de la
+                                    guerra?</h3>
+                            </div>
+                            <div class="container p-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <h2>A.Caída de imperios como el Austrohúngaro y el Otomano, y surgimiento de
+                                                nuevas naciones.<input type="radio" name="rdb" id="correcta5"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>B.Dominio absoluto de Alemania sobre toda Europa.<input type="radio"
+                                                    name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <h2>C.Surgimiento de nuevos imperios coloniales en África.<input
+                                                    type="radio" name="rdb"></h2>
+                                        </div>
+                                        <div>
+                                            <button class="btn" onclick="responder5()">Responder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center-lg">
+                            <h1 class="text-center-lg" id="msj5" style="display: none;">Prueba Completada :D</h1>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continuar5" type="button" class="btn" data-bs-dismiss="modal" style="display: none;"
+                            onclick="seguir5()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="script_mate.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+
+</html>
